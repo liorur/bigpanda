@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="">
+</head>
+
+<body ng-app="app" >
+  
+	<div class="container" ng-controller="messages as vm"  >
+		<div class="msg_form_container">
+			<form ng-submit="vm.add()">
+			<input type="text" placeholder="Email" name="email" ng-model="vm.email">
+		
+			<textarea placeholder="Message" ng-model="vm.text"></textarea>
+			<input type="submit" value="SUBMIT">
+			</form>
+		</div>
+		<div class="msg_list_container">
+			<input type="text" placeholder="filter" name="filter"  ng-model="vm.fltr">
+			<ul class="messages">
+			<li ng-repeat="msg in vm.messages  | filter: vm.nameTextFilter ">
+				<img class="avatar" ng-src="{{ vm.getGravatar(msg.email)}}" >
+				<strong>  {{msg.email}}</strong>
+				<span>  {{msg.text}}  </span>
+			</li>
+			</ul>
+
+		</div>
+
+	</div>
+	<script src="js/libs/md5.js" ></script>
+    <script src="js/libs/angular.min.js" ></script>
+	<script src="js/libs/angular-resource.min.js" ></script>
+	<script src="js/app.js" ></script>
+	<script src="js/app/services/message.service.js" ></script>
+	<script src="js/app/services/gravatar.service.js" ></script>
+	<script src="js/app/messages/messages.controller.js" ></script>
+   
+</body>
+
+</html>
